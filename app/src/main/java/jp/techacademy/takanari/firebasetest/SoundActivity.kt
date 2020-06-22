@@ -3,9 +3,9 @@ package jp.techacademy.takanari.firebasetest
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.preference.PreferenceManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,11 +17,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sound.*
 import java.util.*
 import kotlin.collections.ArrayList
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
 
 
 class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReference.CompletionListener{
@@ -54,7 +49,20 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
 
     val user = FirebaseAuth.getInstance().currentUser
 
-    private var mAdapter: SoundActivityAdapter = SoundActivityAdapter()
+    private lateinit var mAdapter1: SoundActivityAdapter
+    private lateinit var mAdapter2: SoundActivityAdapter
+    private lateinit var mAdapter3: SoundActivityAdapter
+    private lateinit var mAdapter4: SoundActivityAdapter
+    private lateinit var mAdapter5: SoundActivityAdapter
+    private lateinit var mAdapter6: SoundActivityAdapter
+    private lateinit var mAdapter7: SoundActivityAdapter
+    private lateinit var mAdapter8: SoundActivityAdapter
+    private lateinit var mAdapter9: SoundActivityAdapter
+    private lateinit var mAdapter10: SoundActivityAdapter
+    private lateinit var mAdapter11: SoundActivityAdapter
+
+    private var imageView: View? = null
+    private var counter = 0
 
 
     var i = 0
@@ -82,28 +90,152 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
             val Title = dataSnapshot.key
 //            val Test = dataSnapshot.value as Map<String, String>
 
-            val body = dataSnapshot.child("$count").value as String
 
 
             if (Title  == "scaleA") {
                 for (i in 0 until 59) {
-                    val titleTest = body
-                    if (titleTest.toInt() == 1) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
                         val test = SoundDto(true)
                         soundList1.add(test)
-                        mAdapter.notifyDataSetChanged()
-
-
-                    } else if (titleTest.toInt() == 0) {
+                    } else if (body.toInt() == 0) {
                         val test = SoundDto(false)
                         soundList1.add(test)
-                        mAdapter.notifyDataSetChanged()
                     }
                 }
+                mAdapter1.notifyDataSetChanged()
             }
-
+            if (Title  == "scaleB") {
+                for (i in 0 until 59) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
+                        val test = SoundDto(true)
+                        soundList2.add(test)
+                    } else if (body.toInt() == 0) {
+                        val test = SoundDto(false)
+                        soundList2.add(test)
+                    }
+                }
+                mAdapter2.notifyDataSetChanged()
+            }
+            if (Title  == "scaleC") {
+                for (i in 0 until 59) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
+                        val test = SoundDto(true)
+                        soundList3.add(test)
+                    } else if (body.toInt() == 0) {
+                        val test = SoundDto(false)
+                        soundList3.add(test)
+                    }
+                }
+                mAdapter3.notifyDataSetChanged()
+            }
+            if (Title  == "scaleD") {
+                for (i in 0 until 59) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
+                        val test = SoundDto(true)
+                        soundList4.add(test)
+                    } else if (body.toInt() == 0) {
+                        val test = SoundDto(false)
+                        soundList4.add(test)
+                    }
+                }
+                mAdapter4.notifyDataSetChanged()
+            }
+            if (Title  == "scaleE") {
+                for (i in 0 until 59) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
+                        val test = SoundDto(true)
+                        soundList5.add(test)
+                    } else if (body.toInt() == 0) {
+                        val test = SoundDto(false)
+                        soundList5.add(test)
+                    }
+                }
+                mAdapter5.notifyDataSetChanged()
+            }
+            if (Title  == "scaleF") {
+                for (i in 0 until 59) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
+                        val test = SoundDto(true)
+                        soundList6.add(test)
+                    } else if (body.toInt() == 0) {
+                        val test = SoundDto(false)
+                        soundList6.add(test)
+                    }
+                }
+                mAdapter6.notifyDataSetChanged()
+            }
+            if (Title  == "scaleG") {
+                for (i in 0 until 59) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
+                        val test = SoundDto(true)
+                        soundList7.add(test)
+                    } else if (body.toInt() == 0) {
+                        val test = SoundDto(false)
+                        soundList7.add(test)
+                    }
+                }
+                mAdapter7.notifyDataSetChanged()
+            }
+            if (Title  == "scaleH") {
+                for (i in 0 until 59) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
+                        val test = SoundDto(true)
+                        soundList8.add(test)
+                    } else if (body.toInt() == 0) {
+                        val test = SoundDto(false)
+                        soundList8.add(test)
+                    }
+                }
+                mAdapter8.notifyDataSetChanged()
+            }
+            if (Title  == "scaleI") {
+                for (i in 0 until 59) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
+                        val test = SoundDto(true)
+                        soundList9.add(test)
+                    } else if (body.toInt() == 0) {
+                        val test = SoundDto(false)
+                        soundList9.add(test)
+                    }
+                }
+                mAdapter9.notifyDataSetChanged()
+            }
+            if (Title  == "scaleJ") {
+                for (i in 0 until 59) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
+                        val test = SoundDto(true)
+                        soundList10.add(test)
+                    } else if (body.toInt() == 0) {
+                        val test = SoundDto(false)
+                        soundList10.add(test)
+                    }
+                }
+                mAdapter10.notifyDataSetChanged()
+            }
+            if (Title  == "scaleK") {
+                for (i in 0 until 59) {
+                    val body = dataSnapshot.child("$i").value as String
+                    if (body.toInt() == 1) {
+                        val test = SoundDto(true)
+                        soundList11.add(test)
+                    } else if (body.toInt() == 0) {
+                        val test = SoundDto(false)
+                        soundList11.add(test)
+                    }
+                }
+                mAdapter11.notifyDataSetChanged()
+            }
         }
-
         override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
 
         }
@@ -122,11 +254,13 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
     }
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sound)
+
+        imageView = findViewById(R.id.image_view)
+        imageView!!.layout(0, 0, imageView!!.getWidth(), imageView!!.getHeight())
+
 
         val extras = intent.extras
         if (extras != null){
@@ -135,12 +269,91 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
 
 
         savebutton.setOnClickListener(this)
+        savebutton.bringToFront()
 
         val dataBaseReference = FirebaseDatabase.getInstance().reference
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
 
         msoundref = dataBaseReference.child(uid)
+
+        mAdapter1 = SoundActivityAdapter(soundList1) { position ->
+            if (soundList1[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_D)
+            }
+            else if (soundList1[position].addflag == true){
+            }
+        }
+        mAdapter2 = SoundActivityAdapter(soundList2) { position ->
+            if (soundList2[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_Re)
+            }
+            else if (soundList2[position].addflag == true){
+            }
+        }
+        mAdapter3 = SoundActivityAdapter(soundList3) { position ->
+            if (soundList3[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_M)
+            }
+            else if (soundList3[position].addflag == true){
+            }
+        }
+        mAdapter4 = SoundActivityAdapter(soundList4) { position ->
+            if (soundList4[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_F)
+            }
+            else if (soundList4[position].addflag == true){
+            }
+        }
+        mAdapter5 = SoundActivityAdapter(soundList5) { position ->
+            if (soundList5[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_So)
+            }
+            else if (soundList5[position].addflag == true){
+            }
+        }
+        mAdapter6 = SoundActivityAdapter(soundList6) { position ->
+            if (soundList6[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_Ra)
+            }
+            else if (soundList6[position].addflag == true){
+            }
+        }
+        mAdapter7 = SoundActivityAdapter(soundList7) { position ->
+            if (soundList7[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_Si)
+            }
+            else if (soundList7[position].addflag == true){
+            }
+        }
+        mAdapter8 = SoundActivityAdapter(soundList8) { position ->
+            if (soundList8[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_D2)
+            }
+            else if (soundList8[position].addflag == true){
+            }
+        }
+        mAdapter9 = SoundActivityAdapter(soundList9) { position ->
+            if (soundList9[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_Re2)
+            }
+            else if (soundList9[position].addflag == true){
+            }
+        }
+        mAdapter10 = SoundActivityAdapter(soundList10) { position ->
+            if (soundList10[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_M2)
+            }
+            else if (soundList10[position].addflag == true){
+            }
+        }
+        mAdapter11 = SoundActivityAdapter(soundList11) { position ->
+            if (soundList11[position].addflag == false) {
+                Sound.getInstance(this).playSound(Sound.SOUND_F2)
+            }
+            else if (soundList11[position].addflag == true){
+            }
+        }
 
         view1.text="ド"
         view2.text="レ"
@@ -163,141 +376,75 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
 
 
         startbutton.setOnClickListener(mOnstartClickListener)
+        startbutton.bringToFront()
         Sound.getInstance(this)
 
 
         recyclerView1.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView1.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView1.adapter = SoundActivityAdapter(soundList1) { position ->
-            //音を鳴らすコード書くとよい
+        recyclerView1.adapter = mAdapter1
 
-            if (soundList1[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_D)
-            }
-            else if (soundList1[position].addflag == true){
-            }
-        }
+
         recyclerView2.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView2.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView2.adapter = SoundActivityAdapter(soundList2) { position ->
-            //音を鳴らすコード書くとよい
+        recyclerView2.adapter = mAdapter2
 
-            if (soundList2[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_Re)
-            }
-            else if (soundList2[position].addflag == true){
-            }
-        }
+
         recyclerView3.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView3.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView3.adapter = SoundActivityAdapter(soundList3) { position ->
-            //音を鳴らすコード書くとよい
+        recyclerView3.adapter = mAdapter3
 
 
-            if (soundList3[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_M)
-            }
-            else if (soundList3[position].addflag == true){
-            }
-        }
         recyclerView4.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView4.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView4.adapter = SoundActivityAdapter(soundList4) { position ->
-            //音を鳴らすコード書くとよい
+        recyclerView4.adapter = mAdapter4
 
-            if (soundList4[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_F)
-            }
-            else if (soundList4[position].addflag == true){
-            }
-        }
+
         recyclerView5.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView5.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView5.adapter = SoundActivityAdapter(soundList5) { position ->
-            //音を鳴らすコード書くとよい
+        recyclerView5.adapter = mAdapter5
 
-            if (soundList5[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_So)
-            }
-            else if (soundList5[position].addflag == true){
-            }
-        }
+
         recyclerView6.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView6.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView6.adapter = SoundActivityAdapter(soundList6) { position ->
-            //音を鳴らすコード書くとよい
+        recyclerView6.adapter = mAdapter6
 
-            if (soundList6[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_Ra)
-            }
-            else if (soundList6[position].addflag == true){
-            }
-        }
+
         recyclerView7.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView7.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView7.adapter = SoundActivityAdapter(soundList7) { position ->
-            //音を鳴らすコード書くとよい
+        recyclerView7.adapter = mAdapter7
 
 
-            if (soundList7[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_Si)
-            }
-            else if (soundList7[position].addflag == true){
-            }
-        }
         recyclerView8.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView8.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView8.adapter = SoundActivityAdapter(soundList8) { position ->
+        recyclerView8.adapter = mAdapter8
 
-            if (soundList8[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_D2)
-            }
-            else if (soundList8[position].addflag == true){
-            }
 
-        }
         recyclerView9.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView9.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView9.adapter = SoundActivityAdapter(soundList9) { position ->
+        recyclerView9.adapter = mAdapter9
 
-            if (soundList9[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_Re2)
-            }
-            else if (soundList9[position].addflag == true){
-            }
-        }
+
         recyclerView10.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView10.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView10.adapter = SoundActivityAdapter(soundList10) { position ->
+        recyclerView10.adapter = mAdapter10
 
-            if (soundList10[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_M2)
-            }
-            else if (soundList10[position].addflag == true){
-            }
-        }
+
         recyclerView11.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // 1
         recyclerView11.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL)) // 2
-        recyclerView11.adapter = SoundActivityAdapter(soundList11) { position ->
+        recyclerView11.adapter = mAdapter11
 
-            if (soundList11[position].addflag == false) {
-                Sound.getInstance(this).playSound(Sound.SOUND_F2)
-            }
-            else if (soundList11[position].addflag == true){
-            }
-
-        }
         if (user != null) {
             mTitleRef = dataBaseReference.child(user.uid).child(mTitle.toString())
             mTitleRef!!.addChildEventListener(mEventListener)
@@ -308,6 +455,8 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
 
 
     private val mOnstartClickListener = View.OnClickListener {
+
+        imageView!!.bringToFront()
         //タイマーが動いてない時
         if (mTimer == null) {
 
@@ -318,6 +467,18 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
                 override fun run() {
 
                     mHandler.post {
+
+
+
+                        counter += 60
+                        // x方向300pix固定、y方向は20pixづつ増加、画像の横縦幅はそのまま維持
+                        val left = counter / 2
+                        val top = 0
+                        val right = counter / 2 + imageView!!.getWidth()
+                        val bottom = imageView!!.getHeight()
+
+                        imageView!!.layout(left, top, right, bottom)
+
                         if (soundList1[i].addflag == true) {
                             Sound.getInstance(this@SoundActivity).playSound(Sound.SOUND_D)
                         }
@@ -388,10 +549,11 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
                         }
 
                         i+=1
-                        if (i == 60){
+                        if (i == 59){
                             mTimer!!.cancel()
                             mTimer = null
                             i = 0
+                            counter=0
                         }
                     }
                 }
@@ -402,20 +564,21 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
             //ヌルにする
             mTimer = null
             i = 0
+            counter=0
         }
     }
 
     override fun onClick(v: View){
         if (v === savebutton) {
 
+            titleText.bringToFront()
             val title = titleText.text.toString()
 
-//            のちのちいる
-//            if (title.isEmpty()) {
-//                // タイトルが入力されていない時はエラーを表示するだけ
-//                Snackbar.make(v, "タイトルを入力して下さい", Snackbar.LENGTH_LONG).show()
-//                return
-//            }
+            if (title.isEmpty()) {
+                // タイトルが入力されていない時はエラーを表示するだけ
+                Snackbar.make(v, "タイトルを入力して下さい", Snackbar.LENGTH_LONG).show()
+                return
+            }
 
 
             val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -447,7 +610,7 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
             val data10 = HashMap<String, String>()
             val data11 = HashMap<String, String>()
 
-            for (i in 0 until 60) {
+            for (i in 0 until 59) {
 
                 //マスのtruefalseを管理
                 if(soundList1[i].addflag==true){
@@ -536,6 +699,8 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
 
             }
             count=0
+
+            finish()
         }
     }
 
@@ -551,7 +716,7 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
     }
 
     fun newCreate(){
-        for (i in 0 until 60) {
+        for (i in 0 until 59) {
             soundList1.add(
                 SoundDto(
                 )
@@ -604,51 +769,7 @@ class SoundActivity : AppCompatActivity(), View.OnClickListener, DatabaseReferen
     }
 
     fun LoadMelody(){
-        for (i in 0 until 60) {
-            soundList2.add(
-                SoundDto(
-                )
-            )
-            soundList3.add(
-                SoundDto(
-                )
-            )
-            soundList4.add(
-                SoundDto(
-                )
-            )
-            soundList5.add(
-                SoundDto(
-                )
-            )
-            soundList6.add(
-                SoundDto(
-                )
-            )
-            soundList7.add(
-                SoundDto(
-                )
-            )
-            soundList8.add(
-                SoundDto(
-                )
-            )
-            soundList9.add(
-                SoundDto(
-                )
-            )
-            soundList10.add(
-                SoundDto(
-                )
-            )
-            soundList11.add(
-                SoundDto(
-                )
-            )
-            soundList0.add(
-                SoundDto(
-                )
-            )
+        for (i in 0 until 59) {
         }
     }
 }

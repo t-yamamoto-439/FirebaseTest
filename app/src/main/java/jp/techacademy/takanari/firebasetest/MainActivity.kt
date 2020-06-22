@@ -2,10 +2,12 @@ package jp.techacademy.takanari.firebasetest
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private var msoundref: DatabaseReference? = null
     val user = FirebaseAuth.getInstance().currentUser
 
-
+    private var mTitleRef: DatabaseReference? = null
 
 
 
@@ -32,8 +34,6 @@ class MainActivity : AppCompatActivity() {
             val map = dataSnapshot.value as Map<String, String>
 
             val title = dataSnapshot.key
-
-
 
             val question = Question(title.toString())
             mQuestionArrayList.add(question)
@@ -62,12 +62,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val user = FirebaseAuth.getInstance().currentUser
-
         mDatabaseReference = FirebaseDatabase.getInstance().reference
 
-
-//        title = mQuestion.title
 
         // ListViewの準備
         mListView = findViewById(R.id.listView)
@@ -96,15 +92,46 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
+
         mListView.setOnItemClickListener { parent, view, position, id ->
             val intent = Intent(applicationContext,SoundActivity::class.java)
             intent.putExtra("title", mQuestionArrayList[position].title)
             startActivity(intent)
         }
-//        mListView.setOnItemLongClickListener { parent, view, position, id ->
-//
-//        }
 
+        //todo 削除機能
+        mListView.setOnItemLongClickListener { parent, view, position, id ->
+
+            val task = parent.adapter.getItem(position) as Question
+
+            val title = mQuestionArrayList[position].title
+
+            mTitleRef = mDatabaseReference.child(user!!.uid).child(title)
+
+            // ダイアログを表示する
+            val builder = AlertDialog.Builder(this@MainActivity)
+
+            builder.setTitle("削除")
+            builder.setMessage(task.title + "を削除しますか")
+
+            builder.setPositiveButton("OK") { _, _ ->
+
+
+                mTitleRef!!.removeValue()
+                mQuestionArrayList.clear()
+                mAdapter.setQuestionArrayList(mQuestionArrayList)
+                mListView.adapter = mAdapter
+                msoundref!!.addChildEventListener(mEventListener)
+
+
+            }
+            builder.setNegativeButton("CANCEL", null)
+
+            val dialog = builder.create()
+            dialog.show()
+            return@setOnItemLongClickListener false
+        }
     }
 
     //設定がうまくできているか＊あまり気にしない
