@@ -130,9 +130,10 @@ class MainActivity : AppCompatActivity() {
 
             val dialog = builder.create()
             dialog.show()
-            return@setOnItemLongClickListener false
+            true
         }
     }
+
 
     //設定がうまくできているか＊あまり気にしない
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

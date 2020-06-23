@@ -1,6 +1,7 @@
 package jp.techacademy.takanari.firebasetest
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -75,6 +76,8 @@ class LoginActivity : AppCompatActivity() {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             val data = snapshot.value as Map<*, *>?
                             saveName(data!!["name"] as String)
+                            val intent = Intent(applicationContext, MainActivity::class.java)
+                            startActivity(intent)
                         }
 
                         override fun onCancelled(firebaseError: DatabaseError) {}

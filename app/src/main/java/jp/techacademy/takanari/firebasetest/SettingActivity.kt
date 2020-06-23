@@ -1,5 +1,6 @@
 package jp.techacademy.takanari.firebasetest
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -63,6 +64,8 @@ class SettingActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().signOut()
             nameText.setText("")
             Snackbar.make(v, "ログアウトしました", Snackbar.LENGTH_LONG).show()
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }
